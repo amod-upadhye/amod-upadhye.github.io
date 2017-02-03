@@ -24,6 +24,20 @@
   ga('send', 'pageview');
 </script>
 
+<script>
+/**
+* Function that tracks a click on an outbound link in Analytics.
+* This function takes a valid URL string as an argument, and uses that URL string
+* as the event label. Setting the transport method to 'beacon' lets the hit be sent
+* using 'navigator.sendBeacon' in browser that support it.
+*/
+var trackOutboundLink = function(url) {
+   ga('send', 'event', 'outbound', 'click', url, {
+     'transport': 'beacon',
+     'hitCallback': function(){document.location = url;}
+   });
+}
+</script>
 </head>
 <body>
 <h1>Amod Upadhye</h1>
@@ -31,6 +45,6 @@
 <p>GitHub Pages test.</p>
 <p>View My Linked-In profile</p>
 <!-- DIV container for LinkedIn Code -->
-<div class="LI-profile-badge"  data-version="v1" data-size="medium" data-locale="en_US" data-type="horizontal" data-theme="dark" data-vanity="amodupadhye"><a class="LI-simple-link" href='https://www.linkedin.com/in/amodupadhye?trk=profile-badge'>Amod Upadhye</a></div>
+<div class="LI-profile-badge"  data-version="v1" data-size="medium" data-locale="en_US" data-type="horizontal" data-theme="dark" data-vanity="amodupadhye"><a class="LI-simple-link" href='https://www.linkedin.com/in/amodupadhye?trk=profile-badge' onclick="trackOutboundLink('https://www.linkedin.com/AmodUpadhye'); return false;">Amod Upadhye</a></div>
 </body>
 </html>
